@@ -1,0 +1,30 @@
+.popup__form-close {
+    background-image: url('../../../images/profile__close-icon.svg');
+    width: 41px;
+    height: 41px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    padding: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1;
+    transition: opacity ease-in 0.35s;
+}
+
+.popup__form-close:hover{
+opacity: 0.6;
+}
+
+.popup__form-close:focus {
+    outline: none;
+}
+
+@media only screen 
+  and (max-device-width: 767px){
+      .popup__form-close {
+        right: 0;
+    }
+}

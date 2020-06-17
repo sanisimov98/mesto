@@ -1,0 +1,14 @@
+.profile__info-container {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+    align-items: baseline;
+    max-width: 750px;
+}
+
+@media only screen 
+  and (max-device-width: 767px){
+      .profile__info-container {
+          margin-bottom: 14px;
+              }
+}

@@ -1,0 +1,24 @@
+@import url('./__text/footer__text.css');
+
+.footer {
+    margin-bottom: 60px;
+    color: #545454;
+    display: flex;
+    width: 100%;
+    max-width: 882px;
+}
+
+@media only screen 
+  and (max-device-width: 767px){
+      .footer {
+          margin-bottom: 36px;
+          width: 88%;
+              }
+}
+
+@media only screen 
+  and (min-device-width: 768px) and (max-device-width: 1024px){
+      .footer {
+        width: 90%;
+              }
+}

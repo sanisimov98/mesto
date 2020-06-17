@@ -1,0 +1,20 @@
+.popup__form-button {
+    width: 100%;
+    background-color: black;
+    color: white;
+    border: none;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    border-radius: 2px;
+    height: 19%;
+    transition: background-color ease-in 0.35s;
+}
+
+.popup__form-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.popup__form-button:focus {
+    outline: none;
+}

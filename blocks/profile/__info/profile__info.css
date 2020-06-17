@@ -1,0 +1,12 @@
+.profile__info {
+    display: flex;
+    flex-direction: column;
+}
+
+@media only screen 
+  and (max-device-width: 767px){
+      .profile__info {
+          align-items: center;
+          margin: 14px 0 36px 0;
+              }
+}
