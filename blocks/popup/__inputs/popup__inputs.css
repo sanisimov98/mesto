@@ -1,9 +1,8 @@
 .popup__inputs {
+    width: 83%;
+    min-height: 83%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border: none;
-    padding: 0;
-    width: 100%;
-    margin: 0;
+    align-items: flex-start;
 }

@@ -4,24 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Место</title>
-    <link rel="stylesheet" href="./vendor/normalize.css">
     <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body>
     <div class="page">
-        <form class="popup">
-           <div class="popup__container">
-               <button type="button" class="popup__form-close"></button>
-               <div class="popup__form">
-                    <h2 class="popup__form-title">Редактировать профиль</h2>
-                    <fieldset class="popup__inputs">
-                        <input class="popup__form-item popup__form-item_el_name" type="text" name="username" value="">
-                        <input class="popup__form-item popup__form-item_el_text" type="text" name="text" value="">
-                    </fieldset>
-                    <button type="submit" class="popup__form-button">Сохранить</button>
-                </div>
-           </div>     
-        </form>
         <header class="header">
             <img class="header__logo" src="./images/logo.svg" alt="Место">
         </header>
@@ -31,12 +17,12 @@
                 <div class="profile__container">
                     <div class="profile__info">
                         <div class="profile__info-container">
-                            <p class="profile__title">Жак-Ив Кусто</p>
-                            <button class="profile__edit-button"></button>
+                            <h1 class="profile__title">Жак-Ив Кусто</h1>
+                            <button class="profile__edit-button" type="button"></button>
                         </div>
                         <p class="profile__text">Исследователь океана</p>
                     </div>
-                    <button class="profile__add-button"></button>
+                    <button class="profile__add-button" type="button"></button>
                 </div>
             </section>
             <section class="elements">
@@ -44,7 +30,7 @@
                     <img class = "element__image" src="./images/element__karachaevsk.jpg" alt="Карачаевск">
                     <div class="element__container">
                         <p class="element__caption">Карачаевск</p>
-                        <button class="element__like"></button>
+                        <button class="element__like" type="button"></button>
                     </div>
                 </div>
                 <div class="element">
@@ -85,8 +71,21 @@
             </section>
         </main>
         <footer class="footer">
-            <p class="footer__text">© 2020 Mesto Russia</p>
+            <p class="footer__text">&copy; 2020 Mesto Russia</p>
         </footer>
+        <form class="popup" name="popup" action=# method="GET">
+            <div class="popup__container">
+                <button type="button" class="popup__form-close" aria-label="Закрыть"></button>
+                <div class="popup__inputs">
+                     <h2 class="popup__form-title">Редактировать профиль</h2>
+                     <fieldset class="popup__form">
+                         <input class="popup__form-item popup__form-item_el_name" type="text" name="username" value="" placeholder="" required>
+                         <input class="popup__form-item popup__form-item_el_text" type="text" name="text" value="" placeholder="" required>
+                     </fieldset>
+                     <button type="submit" class="popup__form-button">Сохранить</button>
+                 </div>
+            </div>     
+         </form>
     </div>
     <script src="./scripts/script.js"></script>
 </body>

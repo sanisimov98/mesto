@@ -6,9 +6,8 @@
     max-width: 750px;
 }
 
-@media only screen 
-  and (max-device-width: 767px){
-      .profile__info-container {
-          margin-bottom: 14px;
-              }
+@media only screen and (max-device-width: 767px) {
+    .profile__info-container {
+        margin-bottom: 14px;
+    }
 }

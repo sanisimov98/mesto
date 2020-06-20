@@ -1,25 +1,23 @@
-@import url('./__logo/header__logo.css');
+@import url("./__logo/header__logo.css");
 
 .header {
     display: flex;
     margin: 45px 0 40px 0;
     padding: 0 0 40px 0;
-    border-bottom: 1px solid #545454;
+    border-bottom: 1px solid rgb(84,84,84, 0.7);
     width: 100%;
     max-width: 882px;
 }
 
-@media only screen 
-  and (max-device-width: 767px){
-      .header {
-          margin: 0 0 40px 0;
-          padding: 28px 0 32px 0;
-          }
+@media only screen and (max-device-width: 767px) {
+    .header {
+        margin: 0 0 40px 0;
+        padding: 28px 0 32px 0;
+    }
 }
 
-@media only screen 
-  and (min-device-width: 768px) and (max-device-width: 1000px){
-      .header {
-          width: 90%;
+@media only screen and (min-device-width: 768px) and (max-device-width: 1000px) {
+    .header {
+        width: 90%;
     }
 }

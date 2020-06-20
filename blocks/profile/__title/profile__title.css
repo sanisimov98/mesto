@@ -8,9 +8,9 @@
     overflow: hidden;
 }
 
-@media only screen 
-  and (max-device-width: 767px){
-      .profile__title {
-          font-size: 27px;
-              }
+@media only screen and (max-device-width: 767px) {
+    .profile__title {
+        font-size: 27px;
+        max-width: 85vw;
+    }
 }

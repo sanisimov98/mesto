@@ -1,5 +1,5 @@
 .popup__form-close {
-    background-image: url('../../../images/profile__close-icon.svg');
+    background-image: url("../../../images/profile__close-icon.svg");
     width: 41px;
     height: 41px;
     border: none;
@@ -12,19 +12,19 @@
     background-repeat: no-repeat;
     opacity: 1;
     transition: opacity ease-in 0.35s;
+    cursor: pointer
 }
 
-.popup__form-close:hover{
-opacity: 0.6;
+.popup__form-close:hover {
+    opacity: 0.6;
 }
 
 .popup__form-close:focus {
     outline: none;
 }
 
-@media only screen 
-  and (max-device-width: 767px){
-      .popup__form-close {
+@media only screen and (max-device-width: 767px) {
+    .popup__form-close {
         right: 0;
     }
 }
