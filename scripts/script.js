@@ -113,7 +113,7 @@ function addCard(element) {
     card.append(cardImage, cardDelete, cardContainer, fullscreenImagePopup); //картинка и контейнер, созданный выше
     cards.append(card); //добавляем карточку
 
-};
+}
 
 //функция, добавляющая карточки в HTML
 function renderCards(Cards) { 
@@ -130,7 +130,7 @@ function popupAddCardToggle() {
     formCardTitle.value = '';
     formCardImage.value = '';
     popupAdd.classList.toggle('popup_opened');
-};
+}
 
 // обработчик формы добавления карточки
 function cardFormSubmitHandler (evt) { 
@@ -142,11 +142,15 @@ function cardFormSubmitHandler (evt) {
     console.log(newCards)
     addCard(newCards);
     popupAddCardToggle();
-};
+}
 
 popupAddButton.addEventListener('click', popupAddCardToggle); // нажатие на "добавить"
 popupAdd.addEventListener('submit', cardFormSubmitHandler); // отправка формы с новой карточкой
 popupAddElClose.addEventListener('click', popupAddCardToggle); // закрытие формы
+
+likeButtons = document.querySelectorAll('.element__like'); //все кнопки "нравится"
+cardDelete = document.querySelectorAll('.element__delete'); //все кнопки "удалить"
+cardImages = document.querySelectorAll('.element__image'); //все изображения
 
 // нажатие на кнопку "нравится"
 likeButtons.forEach(function(element) {
