@@ -11,6 +11,7 @@
 
 @media only screen and (max-device-width: 767px) {
     .popup__container {
-        width: 300px;
+        width: 75%;
+        max-width: 430px;
     }
 }

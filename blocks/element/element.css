@@ -2,6 +2,8 @@
 @import url("./__image/element__image.css");
 @import url("./__caption/element__caption.css");
 @import url("./__like/element__like.css");
+@import url('./__like/_active/element__like_active.css');
+@import url('./__delete/element__delete.css');
 
 .element {
     background-color: white;
@@ -10,4 +12,5 @@
     flex-direction: column;
     align-items: center;
     overflow: hidden;
+    position: relative;
 }

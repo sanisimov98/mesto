@@ -1,4 +1,4 @@
-.popup__form-close {
+.fullscreen__close {
     background-image: url("../../../images/profile__close-icon.svg");
     width: 41px;
     height: 41px;
@@ -15,19 +15,16 @@
     cursor: pointer
 }
 
-.popup__form-close:hover {
+.fullscreen__close:hover {
     opacity: 0.6;
 }
 
-.popup__form-close:focus {
+.fullscreen__close:focus {
     outline: none;
 }
 
 @media only screen and (max-device-width: 767px) {
-    .popup__form-close {
-        width: 24px;
-        height: 24px;
-        top: -24px;
-        right: -24px;
+    .fullscreen__close {
+        right: 0;
     }
 }
