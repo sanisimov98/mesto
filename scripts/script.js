@@ -78,11 +78,18 @@ function addCard(element) {
 
     // иконка "удалить"
     cardDelete.classList = 'element__delete';
+    cardDelete.addEventListener('click', function () {
+        const deletedOne = cardDelete.closest('.element');
+        deletedOne.remove();
+        });
+    
     
     // контейнер с кнопкой "нравится" и подписью
     cardContainer.classList = 'element__container';
     cardLike.classList = 'element__like';
-    cardTitle.classList = 'element__caption'
+    cardLike.addEventListener('click', function (){
+        cardLike.classList.toggle('element__like_active')});
+    cardTitle.classList = 'element__caption';
     cardTitle.textContent = element.name;
     cardContainer.append(cardTitle, cardLike); //название места и кнопка "нравится"
 
@@ -111,9 +118,11 @@ function addCard(element) {
 
 
     card.append(cardImage, cardDelete, cardContainer, fullscreenImagePopup); //картинка и контейнер, созданный выше
+    cardImage.addEventListener('click', function (){
+        fullscreenImagePopup.classList.toggle('fullscreen_opened');})
     cards.append(card); //добавляем карточку
 
-}
+    }
 
 //функция, добавляющая карточки в HTML
 function renderCards(Cards) { 
@@ -147,29 +156,4 @@ function cardFormSubmitHandler (evt) {
 popupAddButton.addEventListener('click', popupAddCardToggle); // нажатие на "добавить"
 popupAdd.addEventListener('submit', cardFormSubmitHandler); // отправка формы с новой карточкой
 popupAddElClose.addEventListener('click', popupAddCardToggle); // закрытие формы
-
-likeButtons = document.querySelectorAll('.element__like'); //все кнопки "нравится"
-cardDelete = document.querySelectorAll('.element__delete'); //все кнопки "удалить"
-cardImages = document.querySelectorAll('.element__image'); //все изображения
-
-// нажатие на кнопку "нравится"
-likeButtons.forEach(function(element) {
-    element.addEventListener('click', function (){
-    element.classList.toggle('element__like_active')})
-});
-
-// нажатие на кнопку "удалить"
-cardDelete.forEach(function(element) {
-    element.addEventListener('click', function () {
-    const deletedOne = element.closest('.element');
-    deletedOne.remove();})
-});
-
-// открытие изображения во весь экран
-cardImages.forEach(function(element) {
-    element.addEventListener('click', function (){
-    const chosenOne = element.closest('.element');
-    fullscreenImage = chosenOne.querySelector('.fullscreen');
-    fullscreenImage.classList.toggle('fullscreen_opened');})
-});
 
