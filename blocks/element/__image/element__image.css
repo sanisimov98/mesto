@@ -1,6 +1,7 @@
 .element__image {
     object-fit: cover;
     width: 100%;
+    max-width: 282px;
     height: 282px;
     cursor: pointer;
 }
