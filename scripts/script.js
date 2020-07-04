@@ -68,7 +68,7 @@ function handlerProfileFormSubmit(evt) {
     profileName.textContent = formName.value;
     profileText.textContent = formText.value;
 
-    openPopupProfile();
+    closePopupProfile();
 }
 
 
