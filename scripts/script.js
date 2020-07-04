@@ -1,3 +1,4 @@
+// ПЕРЕМЕННЫЕ
 const popupProfile = document.querySelector('.popup_type_profile'); // всплывающее окно
 const popupProfileElOpen = document.querySelector('.profile__edit-button'); // кнопка правки
 const popupProfileElClose = document.querySelector('.popup__form-close_type_profile'); // кнопка закрытия всплывающего окна
@@ -38,14 +39,16 @@ const formCardTitle = document.querySelector('.popup__form-item_el_card-title');
 const formCardImage = document.querySelector('.popup__form-item_el_card-image'); // картинка в карточке
 const popupAddElClose = document.querySelector('.popup__form-close_type_card'); // закрытие формы добавления карточки
 
+// ФУНКЦИИ
+
 // открытие попапов
-function openPopup(variable) {
-    variable.classList.toggle('popup_opened');
+function togglePopup(popup) {
+    popup.classList.toggle('popup_opened');
 }
 
 // функция, добавляющая в пустые поля формы изменения профиля имеющиеся значения
-function togglePopupProfile() {
-    openPopup(popupProfile);
+function openPopupProfile() {
+    togglePopup(popupProfile);
     formName.value = profileName.textContent;
     formText.value = profileText.textContent;
 }
@@ -57,12 +60,36 @@ function handlerProfileFormSubmit(evt) {
     profileName.textContent = formName.value;
     profileText.textContent = formText.value;
 
-    togglePopupProfile();
+    togglePopup();
 }
 
-popupProfileElOpen.addEventListener('click', togglePopupProfile);
-popupProfile.addEventListener('submit', handlerProfileFormSubmit);
-popupProfileElClose.addEventListener('click', togglePopupProfile);
+
+// функция для удаления карточки
+function removeCard(card) {
+    const deletedOne = card.querySelector('.element__delete').closest('.element');
+    deletedOne.remove();
+};
+
+// функция для кнопки "нравится"
+function likeCard(card) {
+    card.querySelector('.element__like').classList.toggle('element__like_active')
+}
+
+// функция для открытия изображения во весь экран
+function toggleFullscreen(card) {
+    const cardFullscreen = card.querySelector('.fullscreen__image-large');
+
+    card.querySelector('.fullscreen').classList.toggle('fullscreen_opened');
+    cardFullscreen.src = cardInfo.link;
+    cardFullscreen.alt = cardInfo.name;
+}
+
+// кнопка "добавить"
+function openPopupAddCard() {
+    formCardTitle.value = '';
+    formCardImage.value = '';
+    togglePopup(popupAdd);
+}
 
 // функция добавления новой карточки
 function addCard(cardInfo) {
@@ -70,36 +97,25 @@ function addCard(cardInfo) {
     const cardItem = cardTemplate.cloneNode(true);
     const card = cardItem.querySelector('.element');
     const cardImage = card.querySelector('.element__image');
-    const cardFullscreen = card.querySelector('.fullscreen__image-large');
 
     cardImage.src = cardInfo.link;
     cardImage.alt = cardInfo.name;
     card.querySelector('.element__caption').textContent = cardInfo.name;
 
     //кнопка удалить
-    card.querySelector('.element__delete').addEventListener('click', function () {
-        const deletedOne = card.querySelector('.element__delete').closest('.element');
-        deletedOne.remove();
-    });
+    card.querySelector('.element__delete').addEventListener('click', removeCard);
 
     //кнопка "мне нравится"
-    card.querySelector('.element__like').addEventListener('click', function () {
-        card.querySelector('.element__like').classList.toggle('element__like_active')
-    });
-    cardFullscreen.src = cardInfo.link;
-    cardFullscreen.alt = cardInfo.name;
+    card.querySelector('.element__like').addEventListener('click', likeCard);
+
 
     card.querySelector('.fullscreen__image-caption').textContent = cardInfo.name;
 
     //изображение во весь экран
-    card.querySelector('.element__image').addEventListener('click', function () {
-        card.querySelector('.fullscreen').classList.toggle('fullscreen_opened');
-    })
+    card.querySelector('.element__image').addEventListener('click', toggleFullscreen);
 
     //закрыть изображение
-    card.querySelector('.fullscreen__close').addEventListener('click', function () {
-        card.querySelector('.fullscreen').classList.toggle('fullscreen_opened');
-    })
+    card.querySelector('.fullscreen__close').addEventListener('click', toggleFullscreen);
 
     return card;
 }
@@ -108,17 +124,9 @@ function addCard(cardInfo) {
 
 function renderCards(someCards) {
     someCards.forEach(element => {
-        card = addCard(element);
+        const card = addCard(element);
         cards.append(card);
     });
-}
-renderCards(initialCards);
-
-// кнопка "добавить"
-function togglePopupAddCard() {
-    formCardTitle.value = '';
-    formCardImage.value = '';
-    openPopup(popupAdd);
 }
 
 // обработчик формы добавления карточки
@@ -132,10 +140,18 @@ function handlerCardFormSubmit(evt) {
 
     //добавление собранной карточки в html
     cards.append(newCard);
-    togglePopupAddCard();
+    togglePopup();
 }
 
-popupAddButton.addEventListener('click', togglePopupAddCard); // нажатие на "добавить"
-popupAdd.addEventListener('submit', handlerCardFormSubmit); // отправка формы с новой карточкой
-popupAddElClose.addEventListener('click', togglePopupAddCard); // закрытие формы
 
+popupProfileElOpen.addEventListener('click', openPopupProfile);
+popupProfile.addEventListener('submit', handlerProfileFormSubmit);
+popupProfileElClose.addEventListener('click', togglePopup);
+
+popupAddButton.addEventListener('click', openPopupAddCard); // нажатие на "добавить"
+popupAdd.addEventListener('submit', handlerCardFormSubmit); // отправка формы с новой карточкой
+popupAddElClose.addEventListener('click', togglePopup); // закрытие формы
+
+
+// Добавление карточек при загрузке страницы
+renderCards(initialCards);
