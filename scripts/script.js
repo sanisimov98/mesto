@@ -41,7 +41,7 @@ const popupAddElClose = document.querySelector('.popup__form-close_type_card'); 
 
 // ФУНКЦИИ
 
-// открытие попапов
+// добавление и удаление модификатора _opened
 function togglePopup(popup) {
     popup.classList.toggle('popup_opened');
 }
@@ -53,6 +53,14 @@ function openPopupProfile() {
     formText.value = profileText.textContent;
 }
 
+function closePopupProfile() {
+    togglePopup(popupProfile);
+}
+
+function closePopupAddCard() {
+    togglePopup(popupAdd);
+}
+
 // обработчик формы изменения профиля
 function handlerProfileFormSubmit(evt) {
     evt.preventDefault();
@@ -60,29 +68,10 @@ function handlerProfileFormSubmit(evt) {
     profileName.textContent = formName.value;
     profileText.textContent = formText.value;
 
-    togglePopup();
+    openPopupProfile();
 }
 
 
-// функция для удаления карточки
-function removeCard(card) {
-    const deletedOne = card.querySelector('.element__delete').closest('.element');
-    deletedOne.remove();
-};
-
-// функция для кнопки "нравится"
-function likeCard(card) {
-    card.querySelector('.element__like').classList.toggle('element__like_active')
-}
-
-// функция для открытия изображения во весь экран
-function toggleFullscreen(card) {
-    const cardFullscreen = card.querySelector('.fullscreen__image-large');
-
-    card.querySelector('.fullscreen').classList.toggle('fullscreen_opened');
-    cardFullscreen.src = cardInfo.link;
-    cardFullscreen.alt = cardInfo.name;
-}
 
 // кнопка "добавить"
 function openPopupAddCard() {
@@ -100,22 +89,40 @@ function addCard(cardInfo) {
 
     cardImage.src = cardInfo.link;
     cardImage.alt = cardInfo.name;
+
     card.querySelector('.element__caption').textContent = cardInfo.name;
 
     //кнопка удалить
-    card.querySelector('.element__delete').addEventListener('click', removeCard);
+    card.querySelector('.element__delete').addEventListener('click', function () {
+        const deletedOne = card.querySelector('.element__delete').closest('.element');
+        deletedOne.remove();
+    });
 
     //кнопка "мне нравится"
-    card.querySelector('.element__like').addEventListener('click', likeCard);
+    card.querySelector('.element__like').addEventListener('click', function () {
+        card.querySelector('.element__like').classList.toggle('element__like_active');
+    });
 
 
     card.querySelector('.fullscreen__image-caption').textContent = cardInfo.name;
 
     //изображение во весь экран
-    card.querySelector('.element__image').addEventListener('click', toggleFullscreen);
+    card.querySelector('.element__image').addEventListener('click', function () {
+        const cardFullscreen = card.querySelector('.fullscreen__image-large');
+
+        card.querySelector('.fullscreen').classList.toggle('fullscreen_opened');
+        cardFullscreen.src = cardInfo.link;
+        cardFullscreen.alt = cardInfo.name;
+    });
 
     //закрыть изображение
-    card.querySelector('.fullscreen__close').addEventListener('click', toggleFullscreen);
+    card.querySelector('.fullscreen__close').addEventListener('click', function () {
+        const cardFullscreen = card.querySelector('.fullscreen__image-large');
+
+        card.querySelector('.fullscreen').classList.toggle('fullscreen_opened');
+        cardFullscreen.src = cardInfo.link;
+        cardFullscreen.alt = cardInfo.name;
+    });
 
     return card;
 }
@@ -140,17 +147,17 @@ function handlerCardFormSubmit(evt) {
 
     //добавление собранной карточки в html
     cards.append(newCard);
-    togglePopup();
+    togglePopup(popupAdd);
 }
 
 
 popupProfileElOpen.addEventListener('click', openPopupProfile);
 popupProfile.addEventListener('submit', handlerProfileFormSubmit);
-popupProfileElClose.addEventListener('click', togglePopup);
+popupProfileElClose.addEventListener('click', closePopupProfile);
 
 popupAddButton.addEventListener('click', openPopupAddCard); // нажатие на "добавить"
 popupAdd.addEventListener('submit', handlerCardFormSubmit); // отправка формы с новой карточкой
-popupAddElClose.addEventListener('click', togglePopup); // закрытие формы
+popupAddElClose.addEventListener('click', closePopupAddCard); // закрытие формы
 
 
 // Добавление карточек при загрузке страницы
