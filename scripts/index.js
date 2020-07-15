@@ -45,15 +45,43 @@ const fullscreen = document.querySelector('.fullscreen'); //во весь экр
 // ФУНКЦИИ
 
 // добавление и удаление модификатора _opened
-function togglePopup(popup, toggledClass) {
-    popup.classList.toggle(toggledClass);
+function openPopup(popup, toggledClass) {
+    popup.classList.add(toggledClass);
+    popup.addEventListener('click', function (evt) {
+        if (evt.target.classList.contains(toggledClass)) {
+            closePopup(popup, toggledClass);
+        }});
+    popup.addEventListener('keydown', function (evt) {
+        if (evt.key === 'Escape') {
+            closePopup(popup, toggledClass);
+        }});
 }
+
+function closePopup(popup, toggledClass) {
+    popup.classList.remove(toggledClass);
+    popup.removeEventListener('click', function (evt) {
+        if (evt.target.classList.contains(toggledClass)) {
+            closePopup(popup, toggledClass);
+        }});
+    popup.removeEventListener('keydown', function (evt) {
+        if (evt.key === 'Escape') {
+            closePopup(popup, toggledClass);
+        }});
+}
+
 
 // функция, добавляющая в пустые поля формы изменения профиля имеющиеся значения
 function openPopupProfile() {
-    togglePopup(popupProfile, 'popup_opened');
+    openPopup(popupProfile, 'popup_opened');
     formName.value = profileName.textContent;
     formText.value = profileText.textContent;
+}
+
+// кнопка "добавить"
+function openPopupAddCard() {
+    formCardTitle.value = '';
+    formCardImage.value = '';
+    openPopup(popupAdd, 'popup_opened');
 }
 
 // обработчик формы изменения профиля
@@ -63,14 +91,7 @@ function handlerProfileFormSubmit(evt) {
     profileName.textContent = formName.value;
     profileText.textContent = formText.value;
 
-    togglePopup(popupProfile, 'popup_opened');
-}
-
-// кнопка "добавить"
-function openPopupAddCard() {
-    formCardTitle.value = '';
-    formCardImage.value = '';
-    togglePopup(popupAdd, 'popup_opened');
+    closePopup(popupProfile, 'popup_opened');
 }
 
 // функция добавления новой карточки
@@ -103,6 +124,10 @@ function addCard(cardInfo) {
         fullscreen.classList.toggle('fullscreen_opened');
         cardFullscreen.src = cardInfo.link;
         cardFullscreen.alt = cardInfo.name;
+        fullscreen.addEventListener('click', function (evt) {
+            if (evt.target.classList.contains('fullscreen_opened')) {
+                closePopup(fullscreen, 'fullscreen_opened');
+            }});
     });
 
     return card;
@@ -128,18 +153,18 @@ function handlerCardFormSubmit(evt) {
 
     //добавление собранной карточки в html
     cards.append(newCard);
-    togglePopup(popupAdd, 'popup_opened');
+    closePopup(popupAdd, 'popup_opened');
 }
 
 
 popupProfileElOpen.addEventListener('click', openPopupProfile);
 popupProfile.addEventListener('submit', handlerProfileFormSubmit);
-popupProfileElClose.addEventListener('click', () => togglePopup(popupProfile, 'popup_opened'));
+popupProfileElClose.addEventListener('click', () => closePopup(popupProfile, 'popup_opened'));
 
 popupAddButton.addEventListener('click', openPopupAddCard); // нажатие на "добавить"
 popupAdd.addEventListener('submit', handlerCardFormSubmit); // отправка формы с новой карточкой
-popupAddElClose.addEventListener('click', () => togglePopup(popupAdd, 'popup_opened')); // закрытие формы
-fullscreenElClose.addEventListener('click', () => togglePopup(fullscreen, 'fullscreen_opened'));
+popupAddElClose.addEventListener('click', () => closePopup(popupAdd, 'popup_opened')); // закрытие формы
+fullscreenElClose.addEventListener('click', () => closePopup(fullscreen, 'fullscreen_opened'));
 
 // Добавление карточек при загрузке страницы
-renderCards(initialCards);
+renderCards(initialCards)

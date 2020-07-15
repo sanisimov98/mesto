@@ -32,30 +32,34 @@
         <footer class="footer">
             <p class="footer__text">&copy; 2020 Mesto Russia</p>
         </footer>
-        <form class="popup popup_type_profile" name="popup_type_profile" method="GET" action="#">
+        <form class="popup popup_type_profile" name="popup_type_profile" method="GET" action="#" novalidate>
             <div class="popup__container">
                 <button type="button" class="popup__form-close popup__form-close_type_profile" aria-label="Закрыть"></button>
                 <div class="popup__inputs">
                      <h2 class="popup__form-title">Редактировать профиль</h2>
                      <fieldset class="popup__form">
-                         <input class="popup__form-item popup__form-item_el_name" type="text" name="username" value="" placeholder="" required>
-                         <input class="popup__form-item popup__form-item_el_text" type="text" name="text" value="" placeholder="" required>
+                         <input id="username" class="popup__form-item popup__form-item_el_name" type="text" name="username" value="" placeholder="" minlength="2" maxlength="40" required>
+                         <span id="username-error" class="popup__form-error"></span>
+                         <input id="text" class="popup__form-item popup__form-item_el_text" type="text" name="text" value="" placeholder="" minlength="2" maxlength="200" required>
+                         <span id="text-error" class="popup__form-error"></span>
+                         <button type="submit" class="popup__form-button">Сохранить</button>
                      </fieldset>
-                     <button type="submit" class="popup__form-button">Сохранить</button>
                  </div>
             </div>     
-         </form>
+        </form>
          
-         <form class="popup popup_type_add-card" name="popup_type_add-card" method="GET" action="#">
+        <form class="popup popup_type_add-card" name="popup_type_add-card" method="GET" action="#" novalidate> 
             <div class="popup__container">
                 <button type="button" class="popup__form-close popup__form-close_type_card" aria-label="Закрыть"></button>
                 <div class="popup__inputs">
                      <h2 class="popup__form-title">Новое место</h2>
                      <fieldset class="popup__form">
-                         <input class="popup__form-item popup__form-item_el_card-title" type="text" name="image__title" value="" placeholder="Название" required>
-                         <input class="popup__form-item popup__form-item_el_card-image" type="text" name="image__link" value="" placeholder="Ссылка на картинку" required>
+                         <input id="image__title" class="popup__form-item popup__form-item_el_card-title" type="text" name="image__title" value="" placeholder="Название" required>
+                         <span id="image__title-error" class="popup__form-error"></span>
+                         <input id="image__link" class="popup__form-item popup__form-item_el_card-image" type="url" name="image__link" value="" placeholder="Ссылка на картинку" required>
+                         <span id="image__link-error" class="popup__form-error"></span>
+                         <button type="submit" class="popup__form-button">Создать</button>
                      </fieldset>
-                     <button type="submit" class="popup__form-button">Создать</button>
                  </div>
             </div>     
          </form>
@@ -78,6 +82,7 @@
             
         </div>
     </template>
-    <script src="./scripts/script.js"></script>
+    <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
 </body>
 </html>

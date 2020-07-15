@@ -3,8 +3,12 @@
 @import url("./__form-close/popup__form-close.css");
 @import url("./__form-title/popup__form-title.css");
 @import url("./__form-item/popup__form-item.css");
+@import url("./__form-item/popup__form-item_type_error.css");
+@import url("./__form-error/popup__form-error.css");
+@import url("./__form-error/popup__form-error_active.css");
 @import url("./__inputs/popup__inputs.css");
 @import url("./__form-button/popup__form-button.css");
+@import url("./__form-button/popup__form-button_disabled.css");
 
 .popup {
     background-color: rgba(0, 0, 0, 0.5);
