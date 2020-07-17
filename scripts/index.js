@@ -38,35 +38,35 @@ const popupAdd = document.querySelector('.popup_type_add-card'); // попап �
 const formCardTitle = document.querySelector('.popup__form-item_el_card-title'); // название карточки
 const formCardImage = document.querySelector('.popup__form-item_el_card-image'); // картинка в карточке
 const popupAddElClose = document.querySelector('.popup__form-close_type_card'); // закрытие формы добавления карточки
-const cardFullscreen = document.querySelector('.fullscreen__image-large');
-const fullscreenElClose = document.querySelector('.fullscreen__close'); //кнопка закрытия изображения во весь экран
-const fullscreen = document.querySelector('.fullscreen'); //во весь экран
+const cardFullscreen = document.querySelector('.popup__fullscreen-image');
+const fullscreenElClose = document.querySelector('.popup__fullscreen-close'); //кнопка закрытия изображения во весь экран
+const fullscreen = document.querySelector('.popup__fullscreen'); //во весь экран
 
 // ФУНКЦИИ
 
 // добавление и удаление модификатора _opened
-function openPopup(popup, toggledClass) {
-    popup.classList.add(toggledClass);
-    popup.addEventListener('click', function (evt) {
-        if (evt.target.classList.contains(toggledClass)) {
-            closePopup(popup, toggledClass);
-        }});
-    popup.addEventListener('keydown', function (evt) {
-        if (evt.key === 'Escape') {
-            closePopup(popup, toggledClass);
-        }});
+function openPopup(popup) {
+    popup.classList.add('popup_opened');
+    popup.addEventListener('click', () => closeOnOverlay(popup));
+    document.addEventListener('keydown', () => closeOnEscape(popup));
 }
 
-function closePopup(popup, toggledClass) {
-    popup.classList.remove(toggledClass);
-    popup.removeEventListener('click', function (evt) {
-        if (evt.target.classList.contains(toggledClass)) {
-            closePopup(popup, toggledClass);
-        }});
-    popup.removeEventListener('keydown', function (evt) {
-        if (evt.key === 'Escape') {
-            closePopup(popup, toggledClass);
-        }});
+function closePopup(popup) {
+    popup.classList.remove('popup_opened');
+    popup.removeEventListener('click', closeOnOverlay);
+    document.removeEventListener('keydown', closeOnEscape);
+}
+
+function closeOnEscape(popup) {
+    if (event.key === 'Escape') {
+        closePopup(popup, 'popup_opened');
+    }
+}
+
+function closeOnOverlay(popup) {
+    if (event.target.classList.contains('popup_opened')) {
+        closePopup(popup);
+    }
 }
 
 
@@ -120,14 +120,10 @@ function addCard(cardInfo) {
 
     //изображение во весь экран
     card.querySelector('.element__image').addEventListener('click', function () {
-        document.querySelector('.fullscreen__image-caption').textContent = cardInfo.name;
-        fullscreen.classList.toggle('fullscreen_opened');
+        document.querySelector('.popup__fullscreen-caption').textContent = cardInfo.name;
         cardFullscreen.src = cardInfo.link;
         cardFullscreen.alt = cardInfo.name;
-        fullscreen.addEventListener('click', function (evt) {
-            if (evt.target.classList.contains('fullscreen_opened')) {
-                closePopup(fullscreen, 'fullscreen_opened');
-            }});
+        openPopup(fullscreen);
     });
 
     return card;

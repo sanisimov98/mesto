@@ -74,4 +74,4 @@ enableValidation({
     inactiveButtonClass: 'popup__form-button_disabled',
     inputErrorClass: 'popup__form-item_type_error',
     errorClass: 'popup__form-error_active'
-  });
+});

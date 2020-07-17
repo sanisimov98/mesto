@@ -1,9 +1,9 @@
-@import url('./__image-caption/fullscreen__image-caption.css');
-@import url('./__image-container/fullscreen__image-container.css');
-@import url('./__image-large/fullscreen__image-large.css');
-@import url('./__close/fullscreen__close.css');
+@import url('./__fullscreen-caption/popup__fullscreen-caption.css');
+@import url('./__fullscreen-close/popup__fullscreen-close.css');
+@import url('./__fullscreen-container/popup__fullscreen-container.css');
+@import url('./__fullscreen-image/popup__fullscreen-image.css');
 
-.fullscreen {
+.popup__fullscreen {
     background-color: rgba(0, 0, 0, 0.9);
     width: 100%;
     height: 100%;

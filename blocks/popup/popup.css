@@ -9,6 +9,7 @@
 @import url("./__inputs/popup__inputs.css");
 @import url("./__form-button/popup__form-button.css");
 @import url("./__form-button/popup__form-button_disabled.css");
+@import url("./__fullscreen/popup__fullscreen.css");
 
 .popup {
     background-color: rgba(0, 0, 0, 0.5);
