@@ -59,7 +59,7 @@ function closePopup(popup) {
 
 function closeOnEscape(popup) {
     if (event.key === 'Escape') {
-        closePopup(popup, 'popup_opened');
+        closePopup(popup);
     }
 }
 
@@ -81,7 +81,7 @@ function openPopupProfile() {
 function openPopupAddCard() {
     formCardTitle.value = '';
     formCardImage.value = '';
-    openPopup(popupAdd, 'popup_opened');
+    openPopup(popupAdd);
 }
 
 // обработчик формы изменения профиля
@@ -91,7 +91,7 @@ function handlerProfileFormSubmit(evt) {
     profileName.textContent = formName.value;
     profileText.textContent = formText.value;
 
-    closePopup(popupProfile, 'popup_opened');
+    closePopup(popupProfile);
 }
 
 // функция добавления новой карточки
@@ -149,7 +149,7 @@ function handlerCardFormSubmit(evt) {
 
     //добавление собранной карточки в html
     cards.append(newCard);
-    closePopup(popupAdd, 'popup_opened');
+    closePopup(popupAdd);
 }
 
 
@@ -159,8 +159,8 @@ popupProfileElClose.addEventListener('click', () => closePopup(popupProfile, 'po
 
 popupAddButton.addEventListener('click', openPopupAddCard); // нажатие на "добавить"
 popupAdd.addEventListener('submit', handlerCardFormSubmit); // отправка формы с новой карточкой
-popupAddElClose.addEventListener('click', () => closePopup(popupAdd, 'popup_opened')); // закрытие формы
-fullscreenElClose.addEventListener('click', () => closePopup(fullscreen, 'fullscreen_opened'));
+popupAddElClose.addEventListener('click', () => closePopup(popupAdd)); // закрытие формы
+fullscreenElClose.addEventListener('click', () => closePopup(fullscreen));
 
 // Добавление карточек при загрузке страницы
 renderCards(initialCards)
