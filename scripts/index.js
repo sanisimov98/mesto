@@ -79,9 +79,11 @@ function openPopupProfile() {
 
 // кнопка "добавить"
 function openPopupAddCard() {
+    const popupAddButton = popupAdd.querySelector('.popup__form-button');
     formCardTitle.value = '';
     formCardImage.value = '';
     openPopup(popupAdd);
+    disableButton(popupAddButton, 'popup__form-button_disabled')
 }
 
 // обработчик формы изменения профиля

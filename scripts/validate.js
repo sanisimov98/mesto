@@ -30,15 +30,24 @@ const validate = (form, input, initialObject) => {
     }
 };
 
+const disableButton = (button, inactiveButton) => {
+    button.classList.add(inactiveButton);
+    button.disabled = true;
+}
+
+const enableButton = (button, inactiveButton) => {
+    button.classList.remove(inactiveButton);
+    button.disabled = false;
+}
+
 // функция включающая или выключающая кнопки отправки форм
 const toggleButton = (inputList, button, initialObject) => {
+    const inactiveButton = initialObject.inactiveButtonClass;
     if (invalidValue(inputList)) {
-        button.classList.add(initialObject.inactiveButtonClass);
-        button.disabled = true;
+        disableButton(button, inactiveButton);
     }
     else {
-        button.classList.remove(initialObject.inactiveButtonClass);
-        button.disabled = false;
+        enableButton(button, inactiveButton);
     }
 };
 
@@ -49,7 +58,7 @@ const setEventListeners = (form, initialObject) => {
     toggleButton(inputList, button, initialObject); // выключение кнопки при открытии формы
     inputList.forEach((input) => {
         input.addEventListener('input', () => {
-            validate(form, input, initialObject) // проверка на валидность
+            validate(form, input, initialObject); // проверка на валидность
             toggleButton(inputList, button, initialObject);  // переключение состояния кнопки
         });
     });
