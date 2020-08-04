@@ -1,17 +1,17 @@
-export const disableButton = (button, inactiveButton) => {
-    button.classList.add(inactiveButton);
-    button.disabled = true;
-}
-
-export const enableButton = (button, inactiveButton) => {
-    button.classList.remove(inactiveButton);
-    button.disabled = false;
-}
-
 export class FormValidator {
     constructor(initialObject, form) {
         this._initialObject = initialObject;
         this._form = form;
+    }
+
+    disableButton = (button, inactiveButton) => {
+        button.classList.add(inactiveButton);
+        button.disabled = true;
+    }
+
+    enableButton = (button, inactiveButton) => {
+        button.classList.remove(inactiveButton);
+        button.disabled = false;
     }
 
     // функция для отображения ошибки
@@ -50,10 +50,10 @@ export class FormValidator {
     _toggleButton = (inputList, button) => {
         const inactiveButton = this._initialObject.inactiveButtonClass;
         if (this._invalidValue(inputList)) {
-            disableButton(button, inactiveButton);
+            this.disableButton(button, inactiveButton);
         }
         else {
-            enableButton(button, inactiveButton);
+            this.enableButton(button, inactiveButton);
         }
     };
 
