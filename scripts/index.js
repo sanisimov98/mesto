@@ -54,8 +54,6 @@ const initialObject = {
 }
 
 const formList = Array.from(document.querySelectorAll(initialObject.formSelector)); // все формы
-const formValidationForDisabledButton = new FormValidator(initialObject, formList[0]); 
-
 
 // функция, добавляющая в пустые поля формы изменения профиля имеющиеся значения
 function openPopupProfile() {
@@ -70,7 +68,7 @@ function openPopupAddCard() {
     formCardTitle.value = '';
     formCardImage.value = '';
     openPopup(popupAdd);
-    formValidationForDisabledButton.disableButton(popupAddButton, 'popup__form-button_disabled')
+    formValidationAdd.disableButton(popupAddButton, 'popup__form-button_disabled')
 }
 
 // обработчик формы изменения профиля
@@ -116,7 +114,8 @@ popupAddElClose.addEventListener('click', () => closePopup(popupAdd)); // зак
 
 addCards();
 
-formList.forEach((form) => {
-    const formValidation = new FormValidator(initialObject, form); 
-    formValidation.enableValidation();
-});
+const formValidationProfile = new FormValidator(initialObject, formList[0]);
+const formValidationAdd = new FormValidator(initialObject, formList[1]);
+formValidationProfile.enableValidation();
+formValidationAdd.enableValidation();
+
