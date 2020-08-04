@@ -21,4 +21,3 @@ export function closeOnOverlay(popup) {
         closePopup(popup);
     }
 }
-const aa = [1]
