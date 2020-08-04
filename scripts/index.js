@@ -1,6 +1,6 @@
 import { Card } from './Card.js';
-import { FormValidator } from './FormValidator.js';
-import { openPopup, closePopup, disableButton } from './Utils.js';
+import { FormValidator, disableButton } from './FormValidator.js';
+import { openPopup, closePopup } from './utils.js';
 
 const popupProfile = document.querySelector('.popup_type_profile'); // всплывающее окно
 const popupProfileElOpen = document.querySelector('.profile__edit-button'); // кнопка правки

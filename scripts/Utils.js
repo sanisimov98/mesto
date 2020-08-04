@@ -21,13 +21,3 @@ export function closeOnOverlay(popup) {
         closePopup(popup);
     }
 }
-
-export const disableButton = (button, inactiveButton) => {
-    button.classList.add(inactiveButton);
-    button.disabled = true;
-}
-
-export const enableButton = (button, inactiveButton) => {
-    button.classList.remove(inactiveButton);
-    button.disabled = false;
-}

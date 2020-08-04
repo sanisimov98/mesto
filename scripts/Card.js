@@ -1,4 +1,4 @@
-import {openPopup} from './Utils.js';
+import {openPopup} from './utils.js';
 import {fullscreen, cardFullscreen} from './index.js';
 
 export class Card {
@@ -14,6 +14,7 @@ export class Card {
     }
 
     _setEventListeners(element) {
+        const elementImage = element.querySelector('.element__image');
         element.querySelector('.element__delete').addEventListener('click', function () {
             const deletedOne = element.querySelector('.element__delete').closest('.element');
             deletedOne.remove();
@@ -23,18 +24,19 @@ export class Card {
         });
 
         //изображение во весь экран
-        element.querySelector('.element__image').addEventListener('click', function () {
+        elementImage.addEventListener('click', function () {
             document.querySelector('.popup__fullscreen-caption').textContent = element.querySelector('.element__image').alt;
-            cardFullscreen.src = element.querySelector('.element__image').src;
-            cardFullscreen.alt = element.querySelector('.element__image').alt;
+            cardFullscreen.src = elementImage.src;
+            cardFullscreen.alt = elementImage.alt;
             openPopup(fullscreen);
         });
     }
 
     generateCard() {
         this._element = this._getTemplate();
-        this._element.querySelector('.element__image').src = this._link;
-        this._element.querySelector('.element__image').alt = this._name;
+        const elementImage = this._element.querySelector('.element__image');
+        elementImage.src = this._link;
+        elementImage.alt = this._name;
         this._element.querySelector('.element__caption').textContent = this._name;
         this._setEventListeners(this._element);
         return this._element;
