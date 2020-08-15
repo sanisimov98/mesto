@@ -4,12 +4,12 @@ export class FormValidator {
         this._form = form;
     }
 
-    disableButton = (button, inactiveButton) => {
+    disableButton(button, inactiveButton) {
         button.classList.add(inactiveButton);
         button.disabled = true;
     }
 
-    enableButton = (button, inactiveButton) => {
+    enableButton(button, inactiveButton) {
         button.classList.remove(inactiveButton);
         button.disabled = false;
     }
@@ -42,12 +42,12 @@ export class FormValidator {
 
     // проверка введённых значений в нескольких полях для ввода данных
     _invalidValue(inputList) {
-        return inputList.some((input) => {
+        return inputList.some(input => {
             return !input.validity.valid;
         })
     }
     // функция включающая или выключающая кнопки отправки форм
-    _toggleButton = (inputList, button) => {
+    _toggleButton(inputList, button) {
         const inactiveButton = this._initialObject.inactiveButtonClass;
         if (this._invalidValue(inputList)) {
             this.disableButton(button, inactiveButton);

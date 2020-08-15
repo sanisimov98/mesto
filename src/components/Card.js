@@ -1,9 +1,9 @@
-import {openPopup} from './utils.js';
-import {fullscreen, cardFullscreen} from './index.js';
+import {PopupWithImage} from './PopupWithImage.js';
 
 export class Card {
-    constructor(cardInfo) {
+    constructor(cardInfo, handleCardClick) {
         this._cardInfo = cardInfo;
+        this._handleCardClick = handleCardClick;
         this._name = this._cardInfo.name;
         this._link = this._cardInfo.link;
     }
@@ -22,14 +22,10 @@ export class Card {
         element.querySelector('.element__like').addEventListener('click', function () {
             element.querySelector('.element__like').classList.toggle('element__like_active');
         });
-
+        const imageData = {'name':this._name, 'link':this._link}
         //изображение во весь экран
-        elementImage.addEventListener('click', function () {
-            document.querySelector('.popup__fullscreen-caption').textContent = element.querySelector('.element__image').alt;
-            cardFullscreen.src = elementImage.src;
-            cardFullscreen.alt = elementImage.alt;
-            openPopup(fullscreen);
-        });
+        const fullscreenPopup = new PopupWithImage(imageData, '.popup__fullscreen');
+        elementImage.addEventListener('click', () => this._handleCardClick(fullscreenPopup));
     }
 
     generateCard() {
