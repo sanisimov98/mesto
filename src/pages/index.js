@@ -70,7 +70,9 @@ export const cards = document.querySelector(".elements");
 export const confirmationPopup = document.querySelector(
   ".popup_type_confirmation"
 );
-const confirmationSubmit = document.querySelector(".popup__confirmation-button");
+const confirmationSubmit = document.querySelector(
+  ".popup__confirmation-button"
+);
 export const userDataFromServer = api.getData();
 
 api.getInitialCards().then((res) => {
@@ -167,7 +169,7 @@ function handlerCardFormSubmit(evt, values) {
   newCardValues["link"] = values["image__link"];
   api.sendNewCard(newCardValues).then((res) => {
     const newCard = createCard(res);
-    cardsSection.addItem(newCard)
+    cardsSection.addItem(newCard);
   });
 }
 
@@ -183,16 +185,28 @@ function handlerCardClick(name, link) {
   fullscreenPopup.open(name, link);
 }
 
-function handlerLikeClick(likeButton, cardID, likes, elementLikesCounter) {
+function handlerLikeClick(likeButton, cardID, elementLikesCounter) {
   likeButton.addEventListener("click", function () {
     if (likeButton.classList.contains("element__like_active")) {
-      api.dislikeButton(cardID);
-      likeButton.classList.remove("element__like_active");
-      elementLikesCounter.textContent = `${likes.length - 1}`;
+      api
+        .dislikeButton(cardID)
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          likeButton.classList.remove("element__like_active");
+          elementLikesCounter.textContent = `${res.likes.length}`;
+        });
     } else {
-      api.likeButton(cardID);
-      likeButton.classList.add("element__like_active");
-      elementLikesCounter.textContent = `${likes.length + 1}`;
+      api
+        .likeButton(cardID)
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          likeButton.classList.add("element__like_active");
+          elementLikesCounter.textContent = `${res.likes.length}`;
+        });
     }
   });
 }
@@ -202,19 +216,18 @@ function handlerDeleteClick(deleteButton, element, id) {
     popupConfirmation.open();
     popupConfirmation.setEventListeners(popupConfirmationElClose, element, id);
   });
-};
-
-function confirmDelete(element, id) {
-    api.deleteCard(id);
-    element.remove();
-    popupConfirmation.close();
 }
 
-export function renderLoading(isLoading, button){
-  if (isLoading){
-    button.textContent = "Сохранение..."
-  }
-  else {
+function confirmDelete(element, id) {
+  api.deleteCard(id);
+  element.remove();
+  popupConfirmation.close();
+}
+
+export function renderLoading(isLoading, button) {
+  if (isLoading) {
+    button.textContent = "Сохранение...";
+  } else {
     button.textContent = "Сохранить";
   }
 }

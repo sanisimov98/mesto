@@ -34,7 +34,6 @@ export class Card {
       this._handleLikeClick(
         likeButton,
         this._cardInfo._id,
-        this._cardInfo.likes,
         elementLikesCounter
       );
       this._cardInfo.likes.forEach((element) => {

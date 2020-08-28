@@ -30,7 +30,7 @@ export class API {
   }
 
   setProfileData(values) {
-    fetch(`${this._options.baseURL}/users/me`, {
+    return fetch(`${this._options.baseURL}/users/me`, {
       method: "PATCH",
       headers: this._options.headers,
       body: JSON.stringify({
@@ -58,21 +58,21 @@ export class API {
   }
 
   likeButton(cardId) {
-    fetch(`${this._options.baseURL}/cards/likes/${cardId}`, {
+    return fetch(`${this._options.baseURL}/cards/likes/${cardId}`, {
       method: "PUT",
       headers: this._options.headers,
     }).catch((err) => console.log(err));
   }
 
   dislikeButton(cardId) {
-    fetch(`${this._options.baseURL}/cards/likes/${cardId}`, {
+    return fetch(`${this._options.baseURL}/cards/likes/${cardId}`, {
       method: "DELETE",
       headers: this._options.headers,
     }).catch((err) => console.log(err));
   }
 
   setProfileImage(value){
-    fetch(`${this._options.baseURL}/users/me/avatar`, {
+    return fetch(`${this._options.baseURL}/users/me/avatar`, {
         method: "PATCH",
         headers: this._options.headers,
         body: JSON.stringify({
@@ -82,7 +82,7 @@ export class API {
   }
 
   deleteCard(cardId){
-    fetch(`${this._options.baseURL}/cards/${cardId}`, {
+    return fetch(`${this._options.baseURL}/cards/${cardId}`, {
         method: "DELETE",
         headers: this._options.headers,
       }).catch((err) => console.log(err));
