@@ -1,0 +1,6 @@
+.popup__confirmation-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 83%;
+}

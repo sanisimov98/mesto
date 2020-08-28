@@ -1,0 +1,6 @@
+.profile__picture-container {
+    background-image: url("../../../images/profile__picture-edit.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 100%;
+}

@@ -4,4 +4,9 @@
     border-radius: 100%;
     overflow: hidden;
     margin: 0;
+    transition: opacity .35s ease-in;;
+}
+
+.profile__picture:hover {
+    opacity: 0.2;
 }

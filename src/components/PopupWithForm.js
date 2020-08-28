@@ -1,4 +1,5 @@
 import { Popup } from "./Popup.js";
+import { renderLoading } from "../pages/index.js";
 
 export class PopupWithForm extends Popup {
   constructor(popupSelector, submitCallback) {
@@ -21,8 +22,10 @@ export class PopupWithForm extends Popup {
     super.setEventListeners(closeButton);
     this._popup.addEventListener("submit", (evt) => {
       evt.stopImmediatePropagation();
+      renderLoading(true, this._popup.querySelector('.popup__form-button'));
       const values = this._getInputValues();
       this._submitCallback(evt, values);
+      renderLoading(false, this._popup.querySelector('.popup__form-button'));
       this.close();
     });
   };
