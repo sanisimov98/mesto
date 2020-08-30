@@ -218,10 +218,9 @@ function handlerLikeClick(likeButton, cardID, elementLikesCounter) {
   });
 }
 
-function handlerDeleteClick(deleteButton, element, id) {
+function handlerDeleteClick(deleteButton, id) {
   deleteButton.addEventListener("click", function () {
-    popupConfirmation.open();
-    popupConfirmation.setEventListeners(popupConfirmationElClose, element, id);
+    popupConfirmation.open(deleteButton.closest(".element"), id);
   });
 }
 
@@ -246,6 +245,7 @@ export function renderLoading(isLoading, button, buttonText) {
 popupAddCard.setEventListeners(popupAddElClose);
 popupProfile.setEventListeners(popupProfileElClose);
 popupProfileImage.setEventListeners(profilePictureFormElClose);
+popupConfirmation.setEventListeners(popupConfirmationElClose);
 popupProfileElOpen.addEventListener("click", openPopupProfile);
 popupAddButton.addEventListener("click", openPopupAddCard); // нажатие на "добавить"
 profilePictureContainer.addEventListener("click", openPopupProfileImage);

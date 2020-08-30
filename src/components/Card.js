@@ -47,7 +47,6 @@ export class Card {
       if (res._id === this._cardInfo.owner._id) {
         this._handleDeleteClick(
           deleteButton,
-          this._element,
           this._cardInfo._id
         );
       } else {
