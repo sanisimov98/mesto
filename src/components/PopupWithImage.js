@@ -7,7 +7,7 @@ export class PopupWithImage extends Popup {
   }
 
   open(name, link) {
-    super.open()
+    super.open();
     fullscreenCaption.textContent = name;
     fullscreenImage.src = link;
     fullscreenImage.alt = name;

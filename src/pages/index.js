@@ -140,7 +140,11 @@ function handlerFormProfileSubmit(evt, values) {
   api
     .setProfileData(values)
     .then((res) => {
-      userInfo.setUserInfo({ "username": res.name, "text": res.about, "avatar": res.avatar });
+      userInfo.setUserInfo({
+        username: res.name,
+        text: res.about,
+        avatar: res.avatar,
+      });
       popupProfile.close();
     })
     .catch((err) => console.log(err));

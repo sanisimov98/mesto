@@ -25,9 +25,9 @@ export class API {
         return Promise.reject(`Ошибка: ${res.status}`);
       })
       .then((res) => {
-          return (res);
-        });
-      };
+        return res;
+      });
+  }
 
   setProfileData(values) {
     return fetch(`${this._options.baseURL}/users/me`, {
@@ -36,13 +36,12 @@ export class API {
       body: JSON.stringify({
         name: values["username"],
         about: values["text"],
-        avatar: values["avatar"]
+        avatar: values["avatar"],
       }),
-    })
-    .then((res) => {
-        return(res.json());
+    }).then((res) => {
+      return res.json();
     });
-  };
+  }
 
   sendNewCard(values) {
     return fetch(`${this._options.baseURL}/cards`, {
@@ -52,27 +51,26 @@ export class API {
         name: values["name"],
         link: values["link"],
       }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-      })
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    });
   }
 
   likeButton(cardId) {
     return fetch(`${this._options.baseURL}/cards/likes/${cardId}`, {
       method: "PUT",
       headers: this._options.headers,
-    })
+    });
   }
 
   dislikeButton(cardId) {
     return fetch(`${this._options.baseURL}/cards/likes/${cardId}`, {
       method: "DELETE",
       headers: this._options.headers,
-    })
+    });
   }
 
   setProfileImage(value) {
@@ -82,14 +80,15 @@ export class API {
       body: JSON.stringify({
         avatar: value,
       }),
-    })
-    .then((res) => {return res.json()})
+    }).then((res) => {
+      return res.json();
+    });
   }
 
   deleteCard(cardId) {
     return fetch(`${this._options.baseURL}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._options.headers,
-    })
+    });
   }
 }
