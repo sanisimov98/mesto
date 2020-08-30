@@ -5,7 +5,9 @@
   "main": "..src/pages/index.js",
   "scripts": {
     "build": "rimraf dist && webpack",
-    "dev": "webpack-dev-server --open --watch"
+    "dev": "webpack-dev-server --open --watch",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -36,6 +38,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "gh-pages": "^3.1.0"
   }
 }
