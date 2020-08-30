@@ -1,4 +1,5 @@
 import { Popup } from "./Popup.js";
+import { fullscreenImage, fullscreenCaption } from "../pages/index.js";
 
 export class PopupWithImage extends Popup {
   constructor(popupSelector) {
@@ -7,8 +8,8 @@ export class PopupWithImage extends Popup {
 
   open(name, link) {
     super.open()
-    document.querySelector(".popup__fullscreen-caption").textContent = name;
-    document.querySelector(".popup__fullscreen-image").src = link;
-    document.querySelector(".popup__fullscreen-image").alt = name;
+    fullscreenCaption.textContent = name;
+    fullscreenImage.src = link;
+    fullscreenImage.alt = name;
   }
 }

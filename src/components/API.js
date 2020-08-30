@@ -3,17 +3,15 @@ export class API {
     this._options = options;
   }
 
-  getData() {
+  getUserData() {
     return fetch(`${this._options.baseURL}/users/me`, {
       headers: this._options.headers,
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-      })
-      .catch((err) => console.log(err));
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    });
   }
 
   getInitialCards() {
@@ -26,8 +24,10 @@ export class API {
         }
         return Promise.reject(`Ошибка: ${res.status}`);
       })
-      .catch((err) => console.log(err));
-  }
+      .then((res) => {
+          return (res);
+        });
+      };
 
   setProfileData(values) {
     return fetch(`${this._options.baseURL}/users/me`, {
@@ -36,9 +36,13 @@ export class API {
       body: JSON.stringify({
         name: values["username"],
         about: values["text"],
+        avatar: values["avatar"]
       }),
-    }).catch((err) => console.log(err));
-  }
+    })
+    .then((res) => {
+        return(res.json());
+    });
+  };
 
   sendNewCard(values) {
     return fetch(`${this._options.baseURL}/cards`, {
@@ -48,43 +52,44 @@ export class API {
         name: values["name"],
         link: values["link"],
       }),
-    }).then((res) => {
+    })
+      .then((res) => {
         if (res.ok) {
           return res.json();
         }
         return Promise.reject(`Ошибка: ${res.status}`);
       })
-      .catch((err) => console.log(err));
   }
 
   likeButton(cardId) {
     return fetch(`${this._options.baseURL}/cards/likes/${cardId}`, {
       method: "PUT",
       headers: this._options.headers,
-    }).catch((err) => console.log(err));
+    })
   }
 
   dislikeButton(cardId) {
     return fetch(`${this._options.baseURL}/cards/likes/${cardId}`, {
       method: "DELETE",
       headers: this._options.headers,
-    }).catch((err) => console.log(err));
+    })
   }
 
-  setProfileImage(value){
+  setProfileImage(value) {
     return fetch(`${this._options.baseURL}/users/me/avatar`, {
-        method: "PATCH",
-        headers: this._options.headers,
-        body: JSON.stringify({
-            avatar: value,
-          }),
-      }).catch((err) => console.log(err));
+      method: "PATCH",
+      headers: this._options.headers,
+      body: JSON.stringify({
+        avatar: value,
+      }),
+    })
+    .then((res) => {return res.json()})
   }
 
-  deleteCard(cardId){
+  deleteCard(cardId) {
     return fetch(`${this._options.baseURL}/cards/${cardId}`, {
-        method: "DELETE",
-        headers: this._options.headers,
-      }).catch((err) => console.log(err));
+      method: "DELETE",
+      headers: this._options.headers,
+    })
   }
 }
