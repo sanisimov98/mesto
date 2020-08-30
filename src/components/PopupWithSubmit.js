@@ -9,13 +9,12 @@ export class PopupWithSubmit extends Popup {
   }
 
   open = (element, id) => {
-      super.open();
-      this._element = element;
-      this._id = id;
-  }
+    super.open();
+    this._element = element;
+    this._id = id;
+  };
 
   setEventListeners(closeButton) {
-      console.log(this._element, this._id)
     super.setEventListeners(closeButton);
     this._popup
       .querySelector(".popup__confirmation-button")
